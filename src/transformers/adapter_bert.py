@@ -557,6 +557,8 @@ class BertModelAdaptersMixin(ModelAdaptersMixin):
         if language in self.invertible_lang_adapters:
             raise ValueError(f"Model already contains an adapter module for '{language}'.")
         inv_adap_config = self.config.adapters.get(language)["invertible_adapter"]
+        if inv_adap_config is None:
+            return None
         if inv_adap_config["block_type"] == "nice":
             inv_adap = NICECouplingBlock(
                 [[self.config.hidden_size]],
