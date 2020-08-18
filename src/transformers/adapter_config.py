@@ -133,6 +133,9 @@ class PfeifferConfig(AdapterConfig):
     output_adapter: bool = True
     non_linearity: str = "relu"
     reduction_factor: int = 16
+    invertible_adapter: Optional[dict] = InvertibleAdapterConfig(
+        block_type="nice", non_linearity="relu", reduction_factor=2
+    )
 
 
 @dataclass
